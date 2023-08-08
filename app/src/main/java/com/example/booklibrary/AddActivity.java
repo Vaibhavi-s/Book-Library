@@ -2,10 +2,11 @@ package com.example.booklibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.booklibrary.SQLiteDatabase.SQLiteHelper;
+import com.example.booklibrary.SQLiteConnection.SQLiteHelper;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -29,6 +30,8 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 SQLiteHelper myDB = new SQLiteHelper(AddActivity.this);
                 myDB.addBook(bookTitle.getText().toString(), bookAuthor.getText().toString(), Integer.parseInt(noOfPages.getText().toString()));
+                Intent intent = new Intent(AddActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -1,7 +1,8 @@
-package com.example.booklibrary.SQLiteDatabase;
+package com.example.booklibrary.SQLiteConnection;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -60,6 +61,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         else {
             Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public Cursor readAllData(){
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if (db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 
 }
